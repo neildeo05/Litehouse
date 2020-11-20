@@ -23,9 +23,6 @@ struct Tensor {
   }
   double& operator()(int index);
   double& operator()(int index1, int index2);
-  int len() {
-    return size;
-  }
   static Tensor zeros(int size) {
     std::vector<double>zerodata(size, 0);
     return Tensor(zerodata);
@@ -74,10 +71,27 @@ struct Tensor {
     }
     return Tensor(nums);
   }
+  static Tensor sqrt(Tensor t) {
+    for(int i = 0; i < t.shape()[0]; i++) {
+      for(int j = 0; j < t.shape()[1]; j++) {
+        t(i,j) = std::sqrt(t(i,j));
+      }
+    }
+    return t;
+  }
 
   int *shape() {
     std::cout << '[' << sh[0] << ',' << sh[1] << ']' << '\n';
     return sh;
+  }
+  double mean(){
+    int sum = 0;
+    for(int i = 0; i < sh[0]; i++) {
+      for(int j = 0; j < sh[1]; j++) {
+        sum += data[i][j];
+      }
+    }
+    return (double) sum / (sh[0] * sh[1]);
   }
 
   friend std::ostream& operator<<(std::ostream& os, const Tensor t) {
@@ -134,21 +148,19 @@ double& Tensor::operator()(int index1, int index2){
 }
 
 int main() {
-  Tensor f({1,2,3});
-  std::cout << f << std::endl;
-  Tensor p({{2,0.2,3}, {1,2,3}, {1,2,4}});
-  std::cout << p << std::endl;
-  std::cout << p(0, 1) << std::endl;
-  p.shape();
-  Tensor t = Tensor::zeros(4,2);
-  t.shape();
-  std::cout << t(0,1);
-  t(0,1) = 2;
-  std::cout << t << std::endl;
-  Tensor val = Tensor::ones(4,6);
-  std::cout<<val<<std::endl;
-  Tensor g = Tensor::randarr(3,2);
-  std::cout << g << std::endl;
+  //Tensor p({{2,0.2,3}, {1,2,3}, {1,2,4}});
+  //std::cout << "P = " << p << std::endl;
+  //Tensor t = Tensor::zeros(4,2);
+  //t.shape();
+  //std::cout << t(0,1);
+  //t(0,1) = 2;
+  //std::cout << t << std::endl;
+  //Tensor val = Tensor::ones(4,6);
+  //std::cout<<val<<std::endl;
+  //Tensor g = Tensor::randarr(3,2);
+  Tensor z({{1,2}, {3,4}, {5,6}});
+  std::cout << z.mean() << std::endl;
+  std::cout << Tensor::sqrt(z);
 
 
 }
