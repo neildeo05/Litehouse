@@ -3,15 +3,7 @@
 #include <random>
 struct Tensor {
   uint64_t size;
-  static std::vector<double> randarr(int size) {
-    std::vector<double>nums;
-    for(int i = 0; i < size; i++) {
-      std::default_random_engine e;
-      std::uniform_real_distribution<> dis(0, 1);
-      nums.push_back(dis(e));
-    }
-    return nums;
-  }
+
   std::vector<std::vector<double>>data;
   int sh[2];
   Tensor(std::vector<double>data_) {
@@ -56,6 +48,33 @@ struct Tensor {
     }
     return Tensor(oneData);
   }
+  static Tensor randarr(int size) {
+     auto getRand  = [](){
+      static std::default_random_engine e;
+      std::uniform_real_distribution<> dis(0, 1);
+      return dis(e); 
+    };
+    std::vector<double>nums;
+    for(int i = 0; i < size; i++) {
+      nums.push_back(getRand());
+    }
+    return Tensor(nums);
+  }
+  static Tensor randarr(int size1, int size2) {
+     auto getRand  = [](){
+      static std::default_random_engine e;
+      std::uniform_real_distribution<> dis(0, 1);
+      return dis(e); 
+    };
+    std::vector<std::vector<double> >nums(size1);
+    for(int i = 0; i < size1; i++) {
+      for (int j = 0; j < size2; j++) {
+        nums[i].push_back(getRand());
+      }
+    }
+    return Tensor(nums);
+  }
+
   int *shape() {
     std::cout << '[' << sh[0] << ',' << sh[1] << ']' << '\n';
     return sh;
@@ -128,7 +147,7 @@ int main() {
   std::cout << t << std::endl;
   Tensor val = Tensor::ones(4,6);
   std::cout<<val<<std::endl;
-  Tensor g = Tensor::randarr(3);
+  Tensor g = Tensor::randarr(3,2);
   std::cout << g << std::endl;
 
 
