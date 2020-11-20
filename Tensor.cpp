@@ -72,8 +72,8 @@ struct Tensor {
     return Tensor(nums);
   }
   static Tensor sqrt(Tensor t) {
-    for(int i = 0; i < t.shape()[0]; i++) {
-      for(int j = 0; j < t.shape()[1]; j++) {
+    for(int i = 0; i < t.sh[0]; i++) {
+      for(int j = 0; j < t.sh[1]; j++) {
         t(i,j) = std::sqrt(t(i,j));
       }
     }
