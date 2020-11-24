@@ -13,9 +13,9 @@ std::cout << g[1](2) << std::endl;
 ```
 
 ## TODO:
- - [] Variadic Templates (NxN)
- - [] Implement autograd features
- - [] Contigous memory with strides
- - [] Allocte memory on heap rather than on stack
+ - [ ] Variadic Templates (NxN)
+ - [ ] Implement autograd features
+ - [ ] Contigous memory with strides
+ - [ ] Allocte memory on heap rather than on stack
  
 
