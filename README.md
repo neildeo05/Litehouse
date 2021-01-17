@@ -8,10 +8,6 @@ std::cout << g[1](2) << std::endl;
 //[] is to access an array from a 2d array
 //() is to access elements
 ```
-
-## TODO:
- - [ ] Variadic Templates (NxN)
- - [ ] Implement autograd features
- - [ ] Contigous memory with strides
+Note: C++ library has been created, but Python bindings are still being developed
  
 
