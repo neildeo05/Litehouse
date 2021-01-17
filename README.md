@@ -1,7 +1,4 @@
-# Implementing a Tensor and an Autograd Library in C++ (lightweight)
-
-### NOTE: We only support 1 dimensional and 2 dimensional tensors (for business reasons)
-
+# Lightweight C++ tensor library
 
 ```c++
 Tensor t = Tensor({{1,2,3},{4,5,6},{7,8,9}});
