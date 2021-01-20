@@ -16,7 +16,6 @@ Steps:
   Loss
   Backward Pass
   Update Weights
-
 Change in the loss for a small change in an Input weight - gradient. Calculated using backprop
 Gradient updates weight using learning rate
 
